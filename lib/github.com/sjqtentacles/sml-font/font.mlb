@@ -1,0 +1,10 @@
+(* MLB for the vendored sml-font library, wired for the sibling-vendored layout
+ * used by sml-text-layout. Pulls in the vendored sml-raster core (which itself
+ * brings sml-image + sml-inflate + sml-color) plus the font sources.
+ *
+ * Brought in WITHOUT a `local` wrapper so consumers can `open Image`/`Raster`
+ * alongside `Font`. *)
+$(SML_LIB)/basis/basis.mlb
+../sml-raster/sources.mlb
+font.sig
+font.sml

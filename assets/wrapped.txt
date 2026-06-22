@@ -1,0 +1,8 @@
+wrap maxWidth=168 lineHeight=9
+layout 168x54, 6 lines:
+  y=0 width=168 glyphs=28
+  y=9 width=132 glyphs=22
+  y=18 width=168 glyphs=28
+  y=27 width=138 glyphs=23
+  y=36 width=156 glyphs=26
+  y=45 width=102 glyphs=17
