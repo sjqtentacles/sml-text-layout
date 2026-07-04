@@ -22,9 +22,17 @@ struct
 
   (* --- small helpers --- *)
 
+  (* Parse via IntInf and bound to the fixed 32-bit range so the result is
+     identical on MLton (default 32-bit int) and Poly/ML (63-bit int): a BDF
+     integer field outside [~2^31, 2^31-1] raises `Font` rather than raising
+     Overflow on MLton / silently accepting a huge value (or OOM-ing on a
+     bogus bounding box) on Poly/ML. Real BDF metrics are all small. *)
   fun toInt what s =
-    case Int.fromString s of
-        SOME n => n
+    case IntInf.fromString s of
+        SOME n =>
+          if n >= ~2147483648 andalso n <= 2147483647
+          then IntInf.toInt n
+          else raise Font ("expected integer in " ^ what ^ ": " ^ s)
       | NONE => raise Font ("expected integer in " ^ what ^ ": " ^ s)
 
   fun hexToInt s =
